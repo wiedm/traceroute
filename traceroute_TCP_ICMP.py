@@ -105,9 +105,13 @@ class Traceroute(object):
 
         #Get the destination and the local ip address
         try:
-            #src_IP = socket.gethostbyname(socket.gethostname())
-            #src_IP = socket.gethostbyname(socket.getfqdn())
-            src_IP = '192.168.1.119'
+            #src_IP = '192.168.1.119'
+
+            #Get local IP address by opening a UDP socket and obtaining its IP address
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.connect(('8.8.8.8', 0))
+            src_IP = s.getsockname()[0]
+
             #print("src_IP: ", src_IP, "dst_IP: ", dst_IP)
         except socket.error as err:
             raise IOError('Unable to resolve {}: {}', self.dest_name, err)
