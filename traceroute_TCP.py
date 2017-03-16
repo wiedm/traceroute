@@ -14,7 +14,6 @@ import random
 import sys
 import time
 import struct
-import os
 #import plt
 #import scapy.all as scapy
 
